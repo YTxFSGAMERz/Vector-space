@@ -41,10 +41,11 @@ class LinearSpanPresentation(Slide):
         subtitle = Text("Mathematics-II Presentation", font_size=HEADING_SIZE - 8, color=MUTED_COLOR)
         sub_subtitle = Text("Vector Space Concept", font_size=HEADING_SIZE - 12, color=MUTED_COLOR)
         
-        VGroup(title, subtitle, sub_subtitle).arrange(DOWN, buff=0.5).move_to(ORIGIN)
+        # Shift the title group up to avoid overlap with the presenter box
+        VGroup(title, subtitle, sub_subtitle).arrange(DOWN, buff=0.4).shift(UP * 0.8)
 
         presenter_text = Text(
-            "Name: [Your Name]\nRoll No: [Your Roll No]\nClass: [Your Class]\nCollege: [Your College]",
+            "Name: Farhan Shaikh\nEnrollment No: 2528021301023\nClass: BTech - CSE AIML (Semester - 2)\nCollege: Bhagwan Mahavir University",
             font_size=24, color=TEXT_COLOR, line_spacing=1.2
         )
         # Rounded box near the lower part
@@ -55,10 +56,10 @@ class LinearSpanPresentation(Slide):
         presenter_group = VGroup(presenter_box, presenter_text).to_corner(DR, buff=0.6)
         presenter_text.move_to(presenter_box.get_center())
 
-        # Faint vectors for visual accent, pushed far away
-        v1 = Arrow(ORIGIN, [3, 1.5, 0], buff=0, color=ACCENT_COLOR, stroke_width=5, stroke_opacity=0.08).shift(RIGHT*4 + UP*2)
-        v2 = Arrow(ORIGIN, [-2, 2.5, 0], buff=0, color=ACCENT_COLOR, stroke_width=5, stroke_opacity=0.08).shift(LEFT*4.5 + UP*2.5)
-        v3 = Arrow(ORIGIN, [-1.5, -2, 0], buff=0, color=ACCENT_COLOR, stroke_width=5, stroke_opacity=0.08).shift(LEFT*3.5 + DOWN*2.5)
+        # Long, elegant vectors in the background pointing outwards
+        v1 = Arrow([2.5, 1.25, 0], [6.5, 3.25, 0], buff=0, color=ACCENT_COLOR, stroke_width=5, stroke_opacity=0.15)
+        v2 = Arrow([-2.5, 1.25, 0], [-6.5, 3.25, 0], buff=0, color=ACCENT_COLOR, stroke_width=5, stroke_opacity=0.15)
+        v3 = Arrow([-2.5, -1.25, 0], [-6.5, -3.25, 0], buff=0, color=ACCENT_COLOR, stroke_width=5, stroke_opacity=0.15)
 
         self.play(Write(title), run_time=1.5)
         self.play(FadeIn(subtitle, shift=UP*0.3), FadeIn(sub_subtitle, shift=UP*0.3))
